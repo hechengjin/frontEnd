@@ -1,0 +1,39 @@
+<html>
+<head>
+<style type="text/css">
+#leftfloat {
+  float:left;
+}
+#rightfloat {
+  float:right;
+}
+/*解决子元素用css float浮动后父级元素高度自适应高度*/
+.clearfloat {
+  clear:both; /*方法一*/
+  overflow: hidden;  /*方法二*/
+}
+</style>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html;">
+<title>float测试</title>
+</head>
+
+<body>
+
+	<div class="clearfloat">
+      1.图案浮动于左边<br>
+        <span id="leftfloat"><img src="yp.jpg"></span>
+    <p>这个例子是用来显示 float:left 会如何影响整个页面的呈现。在这裡，图案浮动于左边。<br></p>
+
+
+	</div>
+
+  <div class="clearfloat">
+  2.图案浮动于右边<br>
+      <span id="rightfloat"><img src="yp.jpg"></span>
+      <p>这个例子是用来显示 float:right 会如何影响整个页面的呈现。在这裡，图案浮动于右边。<br></p>
+  </div>
+
+</body>
+
+</html>
