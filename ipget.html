@@ -3,27 +3,29 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html;">
 <title>JavaScript获取客户端IP[利用新浪接口]</title>
-	
+
 
 </head>
 <body>
+	<div id="ipInfoFrom126">
+	</div>
 
-	
 	<div id="ipInfoFromSoho">
 	</div>
 	<div id="ipInfoFromFreegeoip">
 	</div>
+
 </body>
 		<script type="text/javascript" src="js/jquery.1.11.1.js"></script>
-<script type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8"></script>  
+<script type="text/javascript" src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 <script type="text/javascript">
-	
+
 	var retSohu = "<br />----------------pv.sohu.com/cityjson------------------<br />";
 	retSohu += "地区IP："+returnCitySN.cip+"<br />";
 	retSohu += "地区编码："+returnCitySN.cid+"<br />"
 	retSohu += "地区名称："+returnCitySN.cname+"<br />"
-	document.getElementById("ipInfoFromSoho").innerHTML = retSohu;
-	
+ 	document.getElementById("ipInfoFromSoho").innerHTML = retSohu;
+
 	$.ajax({
     url: 'https://freegeoip.net/json/',
     success: function(data){
@@ -38,6 +40,23 @@
 	},
     type: 'GET',
     dataType: 'JSON'
+});
+
+
+$.ajax({
+	url: 'http://ip.ws.126.net/ipquery?ip=114.255.44.132',
+	success: function(data){
+		var retFree = "<br />----------------126------------------<br />";
+		retFree += '114.255.44.132' +': '+ localAddress.province + ' ' + localAddress.city+"<br />"
+		document.getElementById("ipInfoFrom126").innerHTML = retFree;
+	},
+	error: function(data){
+		var retFree = "<br />----------------126------------------<br />";
+		retFree += "error from 126:"+ JSON.stringify(data)+"<br />"
+		document.getElementById("ipInfoFrom126").innerHTML = retFree;
+	},
+	type: 'GET',
+	dataType: 'script' //返回 script代码
 });
 </script>
 </html>
