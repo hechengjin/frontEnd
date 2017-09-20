@@ -14,6 +14,9 @@
 	</div>
 	<div id="ipInfoFromFreegeoip">
 	</div>
+	
+		<div id="ipInfoFromTaoBao">
+	</div>
 
 </body>
 		<script type="text/javascript" src="js/jquery.1.11.1.js"></script>
@@ -58,5 +61,24 @@ $.ajax({
 	type: 'GET',
 	dataType: 'script' //返回 script代码
 });
+//跨域问题没有走通，跨域必须要jsonp,但这返回的是json串,不是callback的模式,所以没有处理成功
+$.ajax({
+	url: 'http://ip.taobao.com/service/getIpInfo.php?ip=114.255.44.132',
+	type: 'GET',
+	dataType:'jsonp',  
+  jsonp:'callback', 
+  jsonpCallback:"?",
+  success: function(data){
+		var retFree = "<br />----------------taobao---success---------------<br />";
+		retFree += JSON.stringify(data)+"<br />"
+		document.getElementById("ipInfoFromTaoBao").innerHTML = retFree;
+	},
+	error: function(data){
+		var retFree = "<br />----------------taobao----error--------------<br />";
+		retFree += "error from taobao:"+ JSON.stringify(data)+"<br />"
+		document.getElementById("ipInfoFromTaoBao").innerHTML = retFree;
+	},
+});
+
 </script>
 </html>
