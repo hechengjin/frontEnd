@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>原型链与继承</title>
+    </head>
+    <body>
+        <h2>原型链与继承</h2>
+        <script>
+            function Person() {
+                //console.log("11");
+            }
+            Person.prototype.name="人与自然";
+            Person.prototype.age = 18;
+            Person.prototype.getAge = function(){
+                console.log(this.age);
+            }
+            Person.__proto__.nickname = "nkname";
+            let person1 = new Person();
+            //constructor 构造器
+            console.log(person1.constructor); //谁创造了它，就指向谁
+            console.log(person1.name);
+            // _proto_
+            person1.name = "111";
+            person1.aa = "222";
+            console.log(person1.name);
+            console.log(person1.nickname);//undefined
+            console.log(person1);
+            let item;
+            for(const item in person1){
+                if(person1.hasOwnProperty(item)){
+                    console.log("ownProperty:" + item);
+                }
+            }
+
+           function Car(){
+
+           }
+           let car1 = new Car();
+           console.log(car1.name); //undefined
+           console.log(car1);
+           console.log(car1.nickname);//undefined
+
+        </script>
+    </body>
+</html>

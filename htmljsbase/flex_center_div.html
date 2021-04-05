@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>flex center</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            html,body{
+               width: 100%;
+               height: 100%;
+            }
+            .con{
+                width: 200px;
+                height: 200px;
+                background-color: orange;
+                margin: auto;
+            }
+            .flexCenterContainer {
+                min-width: 500px;
+                min-height: 500px;
+                background-color:palegoldenrod;
+                display: flex;
+            }
+
+            .flexGrowContainer {
+                width: 500px;
+                height: 300px;
+                background-color:palegoldenrod;
+                display: flex;
+            }
+
+            li {
+                list-style: none;
+            }
+            li:before {
+                content: "";
+                display: inline-block;
+                width: 15px;
+                height: 15px;
+                background-color: black;
+                border-radius: 50%;
+                margin-right:5px;
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <ul t>
+            <li>flex居中</li>          
+                <div class="flexCenterContainer">
+                    <div class="con">
+                        <h1>居中flex</h1>
+                    </div>
+                </div>
+
+           <li>flex-grow属性</li>
+        
+        
+            <p>flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。</p>
+            <p>如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</p>
+
+            <div class="flexGrowContainer">
+              <div style="flex-grow: 1;">111</div>
+              <div style="flex-grow: 2; background-color: palevioletred;">222</div>
+              <div style="flex-grow: 1;">333</div>
+            </div>
+
+
+          <li>Milk</li>
+
+    </ul>
+    </body>
+</html>

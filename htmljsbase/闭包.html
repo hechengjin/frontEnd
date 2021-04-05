@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>闭包</title>
+    </head>
+    <body>
+        <h2>闭包</h2>
+        <script>
+            let a = "笑看风云";
+            function fn1(){
+                let b = 1;
+                console.log(a);
+                console.log(b);
+            }
+            fn1();
+            //console.log(b); //Uncaught ReferenceError: b is not defined
+            // AO 活动对象 里只有b 不会放a 执行完后，AO释放
+             // AO 活动对象 (b, fn1()) =>垃圾回收机制=>销毁  a是全局不会销毁
+
+            //闭包
+            function outer(){
+                let a1 = 0;
+                let a2 = 1;
+                return function inner(){
+                    return a1;
+                }
+            }
+            function fn2(){
+                let getInnerData = outer();
+                console.dir(getInnerData);
+                //[[Scopes]]: Scopes[3]     全局的作用域指示
+                //[0]Closure (outer) a1: 0   --inner只返回了a1
+            }
+           fn2();
+
+           //闭包的应用场景  1.防抖 2.节流  3.封装
+           //闭包模拟私有方法 数据的隐藏与封装
+           let makeCounter = function(){
+               //私有属性和方法
+               let num = 0;
+               function changeBy(val){
+                   num += val;
+               }
+               return{
+                   add: function(){
+                       changeBy(1);
+                   },
+                   reduce: function(){
+                       changeBy(-1);
+                   },
+                   value: function(){
+                       return num;
+                   }
+               }
+           }
+
+           let counter1 = makeCounter();
+           let counter2 = makeCounter();
+           counter1.add();
+           counter1.add();
+           counter1.reduce();
+
+           counter2.add();
+           counter2.reduce();
+           counter2.add();
+           counter2.add();
+
+           console.log(counter1.value()); //1
+           console.log(counter2.value()); //2
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>letvar</title>
+    </head>
+    <body>
+        <h2>let 与 var</h2>
+        <script>
+            //1.var声明提升
+            console.log(name);
+           var name = "小白";
+
+           //2.var没有块级作用域
+           function fn2(){
+               for(var i = 0; i < 5; i++){
+
+               }
+               console.log(i); //5
+           }
+           fn2();
+
+           //3. var 变量覆盖
+           var demo = "111";
+           var demo = "222";
+           console.log(demo); //222
+        </script>
+    </body>
+</html>
